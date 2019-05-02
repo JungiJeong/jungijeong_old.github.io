@@ -1,0 +1,172 @@
+\documentclass[10pt,letterpaper]{article}
+\usepackage[square,comma,numbers]{natbib}
+\usepackage{multibib}
+\usepackage{xstring}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{booktabs}              % pretty table spacing
+\usepackage{etoolbox}
+\BeforeBeginEnvironment{thebibliography}{%
+  \let\origsection\section% save the original definition of \section
+  \let\section\subsection%  make \section behave like \subsection
+}
+\AfterEndEnvironment{thebibliography}{%
+  \let\section\origsection% restore the original definition of \section
+}
+
+
+%\usepackage{hyperref}
+%\usepackage[hidelinks]{hyperref}
+\usepackage{color,hyperref}
+\definecolor{darkblue}{rgb}{0.0,0.0,0.5}
+\definecolor{myblue}{rgb}{0.0,0.0,1.0}
+\definecolor{pink}{rgb}{1.0,0.1,0.8}
+\hypersetup{colorlinks,breaklinks,linkcolor=blue,
+  urlcolor=darkblue,anchorcolor=darkblue,citecolor=myblue}
+\usepackage{enumitem}
+\setlist[description]{
+%   leftmargin=\parindent,
+  leftmargin=0cm,
+%   labelindent=0.3cm,
+  labelindent=0cm,
+  itemsep=1pt,
+  %parsep=0pt,
+  topsep=0pt,
+}
+
+\newcites{conf,journal,ur,patent}{Conference Proceedings,Journal Articles,Under Review,Granted Patents}
+
+% \usepackage[colorlinks=false]{hyperref}  
+\usepackage{geometry}
+%\hypersetup{colorlinks=true}
+%\usepackage[none]{hyphenat}
+
+% Set your name here
+\def\name{\textsc{Jungi Jeong}}
+
+% The following metadata will show up in the PDF properties
+\hypersetup{
+  colorlinks = true,
+  % urlcolor = black,
+  pdfauthor = {\name},
+  pdfkeywords = { Jeongseob Ahn, CV},
+  pdftitle = {\name: Curriculum Vitae},
+  pdfsubject = {Curriculum Vitae},
+  pdfpagemode = UseNone
+}
+
+\geometry{
+  body={6.5in, 9.0in},
+  left=1.0in,
+  top=1.0in
+}
+
+% highlight myname in bibliography
+\def\FormatName#1{%
+  \def\myname{Jeongseob Ahn}%
+  \edef\name{#1}%
+  \ifx\name\myname
+    \underline{#1}%
+  \else
+    #1%
+  \fi
+}
+
+% insert newline between bib items
+\def\FormatRET{%
+  \\%
+}
+
+% bold paper titles in bibliography
+\def\FormatTitle#1{%
+  \textbf{#1}%
+}
+
+% highlight awards.
+\def\FormatNote#1{%
+  #1%
+}
+
+% Customize page headers
+% \pagestyle{myheadings}
+% \markright{\name}
+\thispagestyle{empty}
+
+% Custom section fonts
+\usepackage{sectsty}
+% \sectionfont{\rmfamily\mdseries\Large}
+% \subsectionfont{\rmfamily\mdseries\itshape\large}
+
+% \sectionfont{\rmfamily\mdseries\Large\textbf}
+% \subsectionfont{\rmfamily\mdseries\large\textbf}
+
+% Other possible font commands include:
+% \ttfamily for teletype,
+% \sffamily for sans serif,
+% \bfseries for bold,
+% \scshape for small caps,
+% \normalsize, \large, \Large, \LARGE sizes.
+
+% Don't indent paragraphs.
+\setlength\parindent{0em}
+
+% Make lists without bullets and compact spacing
+\renewenvironment{itemize}{
+  \begin{list}{}{
+    \setlength{\leftmargin}{1.5em}
+    \setlength{\itemsep}{0.25em}
+    \setlength{\parskip}{0pt}
+    \setlength{\parsep}{0.25em}
+  }
+}{
+  \end{list}
+}
+
+% bib heading: References -> Publication
+\renewcommand{\refname}{Publications}
+
+% customize the \section command
+\usepackage{titlesec} 
+\titleformat{\section}{\Large\scshape\raggedright}{}{0em}{}[\titlerule] % Text formatting of sections
+% \titlespacing{\section}{0pt}{3pt}{3pt} % Spacing around sections
+
+
+\begin{document}
+
+% Place name at left
+{\Huge \name}
+
+% Alternatively, print name centered and bold:
+%\centerline{\huge \bf \name}
+
+\vspace{0.15in}
+
+\input{contact}
+
+%\input{employment}
+\input{education}
+
+\input{research-interest}
+\input{publications}
+\input{teaching}
+%\input{grants}
+\input{award}
+%\input{activity}
+%\input{invited-talk}
+%\input{students}
+%\input{open-source}
+
+\input{references}
+% \input{other}
+
+% Footer
+
+\begin{center}
+  \begin{small}
+    Last updated: \today
+  \end{small}
+\end{center}
+
+\end{document}
+
+
